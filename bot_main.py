@@ -1,6 +1,7 @@
 import telebot
 import os
 import json
+import time
 from datetime import datetime
 from getFile import getFileText
 
@@ -36,4 +37,11 @@ def cronlog(message):
 # --- Main---
 if __name__ == '__main__':
     print('--- BOT STARTED [{0}] ---'.format(datetime.now()))
-    bot.polling()
+    while True:
+        try:
+            print('[{0}] Polling started'.format(datetime.now()))
+            bot.polling()
+            break
+        except Exception as e:
+            print('[{0}] Error occured, standing by'.format(datetime.now()))
+            time.sleep(30)
